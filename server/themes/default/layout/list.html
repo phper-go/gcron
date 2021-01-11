@@ -1,0 +1,73 @@
+{{define "content"}}
+<style>
+.box-2 {padding:4px 12px;}
+</style>
+    <div class="row">
+	      <div class="col-xs-12">
+<!--               <div class="table-header"> Results for "Latest Registered Domains" </div>-->
+              <div>
+                    <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+                          <div class="row"  style="padding-bottom:6px;"> 
+                                <div class="" style="padding:0px 10px;">
+                                    <div id="dynamic-table_filter" class=" ">
+                                    <form    action="{{.builder.Action}}" method="{{.builder.Method}}"> 	 
+					{{range $i, $v := .builder.Elements}}
+					 	 
+ 								<label    >
+							  {{$v.Desc}} 
+               {{if or (eq $v.Type "submit") (eq $v.Type "button")}}
+									  {{$v.Render "class:box-2 btn-info"}}
+                                  {{else}}  
+									  {{$tip := (printf "%s%s" "placeholder:" $v.Tip)}}
+									  {{$v.Render "class:form-control input-sm" $tip}}
+                {{end}}
+ 								</label> 
+  	 				{{end}}
+				</form>
+                                     <!-- <label>Search:
+                                          <input type="search" class="form-control input-sm" placeholder="" aria-controls="dynamic-table">
+                                      </label>-->
+                                  </div>
+                              </div>
+                          </div>
+                          <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
+						      <thead>
+							      <tr role="row">
+                    					{{range $_, $title := .form.Title}}  
+                    					    {{range $_, $t := $title}} 
+                                              <td class="" rowspan="1" colspan="1" aria-label="">{{$t}}</td>
+                                            {{end}} 
+                                       {{end}}
+                                  </tr>
+							</thead>
+                            <tbody>	 
+                                {{range $_,$vo := .list}}
+								  <tr role="row" class="odd even">
+                                       {{range $_, $title := $.form.Title}}  
+                    					               {{range $key, $_ := $title}} 
+                                              <td>{{index  $vo $key}}</td>
+                                            {{end}} 
+                                       {{end}}
+                                  </tr> 
+                                {{end}}
+                            </tbody>
+                        </table>
+                        <div class="row" style="padding-bottom:8px;">
+                            <div class="col-xs-4">
+                            {{if .total}}
+                                {{if gt .total  0}}
+                                    <div class="dataTables_info"  style="line-height:30px;" id="dynamic-table_info" role="status" aria-live="polite">
+                                        Showing {{.form.PageIndex}} to {{.form.PageSize}} of {{.total}} entries
+                                    </div>
+                                {{end}}
+                            {{end}}
+                            </div>
+                            <div class="col-xs-8">
+                                {{.page}}
+                            </div>
+                        </div>
+                    </div>
+			    </div>
+			</div>
+	  </div>
+{{end}}

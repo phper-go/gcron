@@ -1,0 +1,10 @@
+{
+ 	"HTTPServer": {
+		"address":":8080",
+		"static":"./static/"
+	},
+	"DB":"db.json",
+	"Doc":{
+		"enable":1
+	}
+}

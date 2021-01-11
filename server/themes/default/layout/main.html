@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>Default Responsive(mobile) Menu - Ace Admin</title>
+
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="/static/default/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/static/default/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="/static/default/css/fonts.googleapis.com.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="/static/default/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="/static/default/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" href="/static/default/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="/static/default/css/ace-rtl.min.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="/static/default/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="/static/default/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="/static/default/js/html5shiv.min.js"></script>
+		<script src="/static/default/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="no-skin">
+	
+		{{template "header" .}}
+
+		<div class="main-container ace-save-state" id="main-container">
+		
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+			<div id="sidebar" class="sidebar responsive ace-save-state">
+			
+			{{template "menu" .}}
+			
+			</div>
+
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+						<ul class="breadcrumb"> 
+							<li>Layouts</li>
+							<li class="active">Default Mobile Menu</li>
+						</ul><!-- /.breadcrumb -->
+					</div>
+
+					<div class="page-content">
+          
+            {{if .successTip}}
+              <div class="alert alert-block alert-success" style="margin-bottom:6px;">
+								<button type="button" class="close" data-dismiss="alert">
+									<i class="ace-icon fa fa-times"></i>
+								</button> 
+								<i class="ace-icon fa fa-check green" ></i>
+                {{.successTip}}
+ 							</div>
+            {{end}}
+            
+            {{if .errorTip}}
+               <div class="alert alert-block alert-success" style="margin-bottom:6px;color:#BD0D30;">
+  								<button type="button" class="close" data-dismiss="alert">
+  									<i class="ace-icon fa fa-times"></i>
+  								</button> 
+  								<i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+                  {{.errorTip}}
+ 							</div>
+            {{end}}
+            
+					  {{template "content" .}}
+						 
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+			{{template "footer" .}}
+ 
+		</div><!-- /.main-container -->
+		
+	</body>
+</html>
+

@@ -1,0 +1,49 @@
+{{define "content"}}
+
+  <style>
+  .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio]{
+    margin: 12px 0 0 0;
+    position:static;
+  }
+  .checkbox, .radio{
+    display:inline;
+    padding:0px;
+    margin-right:12px;
+  }
+  </style>
+	<div class="step-content pos-rel">
+		<div class="step-pane active" data-step="1">
+				<h3 class="lighter block green">{{.builder.Title}}</h3>
+	
+				<form class="form-horizontal" id="sample-form" action="{{.builder.Action}}" method="{{.builder.Method}}"> 	 
+					{{range $i, $v := .builder.Elements}}
+					 	{{if eq $v.Type "hidden"}}
+							{{$v.Render}} 
+						{{else}}
+							<div class="form-group  {{if eq $v.HasError true}} has-error{{end}} "> 
+								<label   class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">
+								{{$v.Desc}}
+								{{if $v.Required}}
+									<b style="color:red"> *</b>
+								{{end}}
+								</label>
+								<div class="col-xs-12 col-sm-5 ">
+                                  {{if or (eq $v.Type "submit") (eq $v.Type "button")}}
+									  {{$v.Render "class:btn btn-info"}}
+                                  {{else}}  
+									  {{$tip := (printf "%s%s" "placeholder:" $v.Tip)}}
+									  {{$v.Render "class:width-100" $tip}}
+                                  {{end}}
+ 			  					</div>
+								<div class="help-block col-xs-12 col-sm-reset inline">{{$v.Errmsg}}</div> 
+							</div>
+							<div class="space-2"></div>
+						{{end}}
+	 				{{end}}
+				</form>
+			</div>
+	 
+		</div>
+	</div>
+
+{{end}}

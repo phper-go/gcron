@@ -6,30 +6,30 @@ import (
 	"github.com/phper-go/frame/web/form/element"
 )
 
-type IndexForm struct {
+type CronIndex struct {
 	validator.Api
 	Id    interface{}
 	Name  interface{}
 	Phone interface{}
 }
 
-func (this *IndexForm) Rules() validator.Rules {
+func (this *CronIndex) Rules() validator.Rules {
 
 	return validator.Rules{
 		&validator.Required{Fields: "name,phone"},
 	}
 }
 
-func (this *IndexForm) Builder() *form.Builder {
+func (this *CronIndex) Builder() *form.Builder {
 
-	builder := &form.Builder{}
-	builder.Construct("?", "POST")
-	builder.Elements = []element.Interface{
+	elements := []element.Interface{
 		element.Hidden("id"),
 		element.Text("name", "脚本名称", "脚本文件名称"),
 		element.Text("phone", "手机号", "18612345678"),
 		element.Button("submit", "提交"),
 	}
-	builder.Bind(this)
+
+	builder := form.BuildForm("?", "POST", elements, this)
+
 	return builder
 }

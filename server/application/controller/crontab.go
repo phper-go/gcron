@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"example/application/forms"
+	"gcron/server/application/forms"
 
 	"github.com/phper-go/frame/ext/validator"
 	"github.com/phper-go/frame/web/core"
@@ -11,9 +11,9 @@ type CronController struct {
 	baseController
 }
 
-func (this *CrontabController) IndexAction() {
+func (this *CronController) IndexAction() {
 
-	form := &forms.IndexForm{}
+	form := &forms.CronIndex{}
 
 	this.Ctx().Input.Bind(form)
 
@@ -27,5 +27,5 @@ func (this *CrontabController) IndexAction() {
 }
 
 func init() {
-	core.RegisterController("/index", &CrontabController{})
+	core.RegisterController("/cron", &CronController{})
 }

@@ -43,7 +43,7 @@ func (this *CrontabListForm) DBCmd(sdb *db.DB) *db.DBCommand {
 
 func (this *CrontabListForm) List(dbCmd *db.DBCommand) ([]map[string]interface{}, error) {
 
-	list, err := dbCmd.QueryList()
+	list, err := dbCmd.QueryRows()
 
 	for _, one := range list {
 		id := conv.String(one["id"])

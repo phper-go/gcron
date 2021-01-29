@@ -1,9 +1,9 @@
 package main
 
 import (
-	_ "example/application/action"
-	_ "example/application/controller"
-	"example/application/run"
+	_ "gcron/server/application/action"
+	_ "gcron/server/application/controller"
+	"gcron/server/application/run"
 	"os"
 
 	"github.com/phper-go/frame"

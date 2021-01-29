@@ -1,5 +1,5 @@
 package action
 
 import (
-	_ "example/application/action/index"
+	_ "gcron/server/application/action/index"
 )

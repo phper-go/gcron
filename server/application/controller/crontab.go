@@ -17,7 +17,7 @@ func (this *CronController) IndexAction() {
 
 	this.Ctx().Input.Bind(form)
 
-	if this.Ctx().Input.Server.IsPost {
+	if this.Ctx().Server.IsPost {
 		validator.Check(form)
 	}
 

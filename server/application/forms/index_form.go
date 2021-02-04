@@ -22,14 +22,13 @@ func (this *CronIndex) Rules() validator.Rules {
 
 func (this *CronIndex) Builder() *form.Builder {
 
-	elements := []element.Interface{
+	builder := form.BuildForm("?", "POST", this, []element.Interface{
+
 		element.Hidden("id"),
 		element.Text("name", "脚本名称", "脚本文件名称"),
 		element.Text("phone", "手机号", "18612345678"),
 		element.Button("submit", "提交"),
-	}
-
-	builder := form.BuildForm("?", "POST", elements, this)
+	})
 
 	return builder
 }
